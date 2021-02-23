@@ -15,7 +15,7 @@ const MRE = __importStar(require("@microsoft/mixed-reality-extension-sdk"));
 /**
  * The main class of this app. All the logic goes here.
  */
-class HelloWorld {
+class KonsulnAnim {
     constructor(context) {
         this.context = context;
         this.text = null;
@@ -67,7 +67,7 @@ class HelloWorld {
         // And set it to play immediately, and bounce back and forth from start to end
         { isPlaying: true, wrapMode: MRE.AnimationWrapMode.PingPong });
         // Load a glTF model before we use it
-        const cubeData = await this.assets.loadGltf('ABBRobot.gltf', "box");
+        const cubeData = await this.assets.loadGltf('ScalingCube.gltf', "box");
         // spawn a copy of the glTF model
         this.cube = MRE.Actor.CreateFromPrefab(this.context, {
             // using the data we loaded earlier
@@ -146,5 +146,5 @@ class HelloWorld {
             }];
     }
 }
-exports.default = HelloWorld;
+exports.default = KonsulnAnim;
 //# sourceMappingURL=app.js.map
