@@ -33,7 +33,7 @@ export default class KonsulnAnim {
 					app: { position: { x: 0, y: 0.5, z: 0 } }
 				},
 				text: {
-					contents: "klick = animation",
+					contents: "klick = animation\nStart-Stopp",
 					anchor: MRE.TextAnchorLocation.MiddleCenter,
 					color: { r: 30 / 255, g: 206 / 255, b: 213 / 255 },
 					height: 0.3
@@ -70,7 +70,7 @@ export default class KonsulnAnim {
 		*/
 
 		// Load a glTF model before we use it
-		const cubeData = await this.assets.loadGltf('ScalingCube5.gltf', "box");
+		const cubeData = await this.assets.loadGltf('LKAB.glb', "box");
 
 		// spawn a copy of the glTF model
 		this.cube = MRE.Actor.CreateFromPrefab(this.context, {
@@ -133,17 +133,21 @@ export default class KonsulnAnim {
 
 		// When clicked, Play animation
 		buttonBehavior.onClick(_ => {
-			
-			this.cube.targetingAnimationsByName.get('CubeAction.001').play(true)
-			//flipAnim.play();
+			if(this.cube.targetingAnimationsByName.get('CubeAction.001').isPlaying)	{ 
+				this.cube.targetingAnimationsByName.get('CubeAction.001').stop() 
+			} else { 
+				this.cube.targetingAnimationsByName.get('CubeAction.001').play(true) 
+			}
 		});
 	}
 
+	
 	/**
 	 * Generate keyframe data for a simple spin animation.
 	 * @param duration The length of time in seconds it takes to complete a full revolution.
 	 * @param axis The axis of rotation in local space.
 	 */
+	/*
 	private generateSpinKeyframes(duration: number, axis: MRE.Vector3): Array<MRE.Keyframe<MRE.Quaternion>> {
 		return [{
 			time: 0 * duration,
@@ -161,5 +165,8 @@ export default class KonsulnAnim {
 			time: 1 * duration,
 			value: MRE.Quaternion.RotationAxis(axis, 2 * Math.PI)
 		}];
+		
+	
 	}
+	*/
 }

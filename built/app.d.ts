@@ -16,11 +16,5 @@ export default class KonsulnAnim {
      * Once the context is "started", initialize the app.
      */
     private started;
-    /**
-     * Generate keyframe data for a simple spin animation.
-     * @param duration The length of time in seconds it takes to complete a full revolution.
-     * @param axis The axis of rotation in local space.
-     */
-    private generateSpinKeyframes;
 }
 //# sourceMappingURL=app.d.ts.map

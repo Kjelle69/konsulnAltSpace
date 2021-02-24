@@ -36,7 +36,7 @@ class KonsulnAnim {
                     app: { position: { x: 0, y: 0.5, z: 0 } }
                 },
                 text: {
-                    contents: "klick = animation",
+                    contents: "klick = animation\nStart-Stopp",
                     anchor: MRE.TextAnchorLocation.MiddleCenter,
                     color: { r: 30 / 255, g: 206 / 255, b: 213 / 255 },
                     height: 0.3
@@ -70,7 +70,7 @@ class KonsulnAnim {
             { isPlaying: true, wrapMode: MRE.AnimationWrapMode.PingPong });
         */
         // Load a glTF model before we use it
-        const cubeData = await this.assets.loadGltf('ScalingCube5.gltf', "box");
+        const cubeData = await this.assets.loadGltf('LKAB.glb', "box");
         // spawn a copy of the glTF model
         this.cube = MRE.Actor.CreateFromPrefab(this.context, {
             // using the data we loaded earlier
@@ -128,32 +128,13 @@ class KonsulnAnim {
 */
         // When clicked, Play animation
         buttonBehavior.onClick(_ => {
-            this.cube.targetingAnimationsByName.get('CubeAction.001').play(true);
-            //flipAnim.play();
+            if (this.cube.targetingAnimationsByName.get('CubeAction.001').isPlaying) {
+                this.cube.targetingAnimationsByName.get('CubeAction.001').stop();
+            }
+            else {
+                this.cube.targetingAnimationsByName.get('CubeAction.001').play(true);
+            }
         });
-    }
-    /**
-     * Generate keyframe data for a simple spin animation.
-     * @param duration The length of time in seconds it takes to complete a full revolution.
-     * @param axis The axis of rotation in local space.
-     */
-    generateSpinKeyframes(duration, axis) {
-        return [{
-                time: 0 * duration,
-                value: MRE.Quaternion.RotationAxis(axis, 0)
-            }, {
-                time: 0.25 * duration,
-                value: MRE.Quaternion.RotationAxis(axis, Math.PI / 2)
-            }, {
-                time: 0.5 * duration,
-                value: MRE.Quaternion.RotationAxis(axis, Math.PI)
-            }, {
-                time: 0.75 * duration,
-                value: MRE.Quaternion.RotationAxis(axis, 3 * Math.PI / 2)
-            }, {
-                time: 1 * duration,
-                value: MRE.Quaternion.RotationAxis(axis, 2 * Math.PI)
-            }];
     }
 }
 exports.default = KonsulnAnim;
