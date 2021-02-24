@@ -4,6 +4,7 @@
  */
 
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
+import { Actor } from '@microsoft/mixed-reality-extension-sdk';
 
 /**
  * The main class of this app. All the logic goes here.
@@ -32,7 +33,7 @@ export default class KonsulnAnim {
 					app: { position: { x: 0, y: 0.5, z: 0 } }
 				},
 				text: {
-					contents: "LKAB Konsuln",
+					contents: "klick = animation",
 					anchor: MRE.TextAnchorLocation.MiddleCenter,
 					color: { r: 30 / 255, g: 206 / 255, b: 213 / 255 },
 					height: 0.3
@@ -40,6 +41,8 @@ export default class KonsulnAnim {
 			}
 		});
 
+
+		/*
 		// Here we create an animation for our text actor. First we create animation data, which can be used on any
 		// actor. We'll reference that actor with the placeholder "text".
 		const spinAnimData = this.assets.createAnimationData(
@@ -64,9 +67,10 @@ export default class KonsulnAnim {
 			{ text: this.text },
 			// And set it to play immediately, and bounce back and forth from start to end
 			{ isPlaying: true, wrapMode: MRE.AnimationWrapMode.PingPong });
+		*/
 
 		// Load a glTF model before we use it
-		const cubeData = await this.assets.loadGltf('ScalingCube.gltf', "box");
+		const cubeData = await this.assets.loadGltf('ScalingCube5.gltf', "box");
 
 		// spawn a copy of the glTF model
 		this.cube = MRE.Actor.CreateFromPrefab(this.context, {
@@ -74,7 +78,7 @@ export default class KonsulnAnim {
 			firstPrefabFrom: cubeData,
 			// Also apply the following generic actor properties.
 			actor: {
-				name: 'Altspace Cube',
+				name: 'BlenderCube',
 				// Parent the glTF model to the text actor, so the transform is relative to the text
 				parentId: this.text.id,
 				transform: {
@@ -86,6 +90,7 @@ export default class KonsulnAnim {
 			}
 		});
 
+		/*
 		// Create some animations on the cube.
 		const flipAnimData = this.assets.createAnimationData(
 			// the animation name
@@ -101,11 +106,13 @@ export default class KonsulnAnim {
 		);
 		// apply the animation to our cube
 		const flipAnim = await flipAnimData.bind({ target: this.cube });
+		*/
 
 		// Set up cursor interaction. We add the input behavior ButtonBehavior to the cube.
 		// Button behaviors have two pairs of events: hover start/stop, and click start/stop.
 		const buttonBehavior = this.cube.setBehavior(MRE.ButtonBehavior);
 
+		/*
 		// Trigger the grow/shrink animations on hover.
 		buttonBehavior.onHover('enter', () => {
 			// use the convenience function "AnimateTo" instead of creating the animation data in advance
@@ -122,10 +129,13 @@ export default class KonsulnAnim {
 				easing: MRE.AnimationEaseCurves.EaseOutSine
 			});
 		});
+*/
 
-		// When clicked, do a 360 sideways.
+		// When clicked, Play animation
 		buttonBehavior.onClick(_ => {
-			flipAnim.play();
+			
+			this.cube.targetingAnimationsByName.get('CubeAction.001').play(true)
+			//flipAnim.play();
 		});
 	}
 
