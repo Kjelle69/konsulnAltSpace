@@ -6,6 +6,7 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
 import { Actor } from '@microsoft/mixed-reality-extension-sdk';
 
+
 /**
  * The main class of this app. All the logic goes here.
  */
@@ -33,7 +34,7 @@ export default class KonsulnAnim {
 					app: { position: { x: 0, y: 0.5, z: 0 } }
 				},
 				text: {
-					contents: "klick = animation\nStart-Stopp",
+					contents: ".",  // "klick = animation\nStart-Stopp"
 					anchor: MRE.TextAnchorLocation.MiddleCenter,
 					color: { r: 30 / 255, g: 206 / 255, b: 213 / 255 },
 					height: 0.3
@@ -134,7 +135,7 @@ export default class KonsulnAnim {
 		// When clicked, Play animation
 		buttonBehavior.onClick(_ => {
 			if(this.cube.targetingAnimationsByName.get('CubeAction.001').isPlaying)	{ 
-				this.cube.targetingAnimationsByName.get('CubeAction.001').stop() 
+				this.cube.targetingAnimationsByName.get('CubeAction.001').stop()
 			} else { 
 				this.cube.targetingAnimationsByName.get('CubeAction.001').play(true) 
 			}

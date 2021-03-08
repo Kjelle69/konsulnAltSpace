@@ -36,7 +36,7 @@ class KonsulnAnim {
                     app: { position: { x: 0, y: 0.5, z: 0 } }
                 },
                 text: {
-                    contents: "klick = animation\nStart-Stopp",
+                    contents: ".",
                     anchor: MRE.TextAnchorLocation.MiddleCenter,
                     color: { r: 30 / 255, g: 206 / 255, b: 213 / 255 },
                     height: 0.3
